@@ -1,6 +1,5 @@
 import { login } from '../../lib/auth.js';
 import { HOME_PATH, ROLES } from '../../lib/constants.js';
-import { DEMO_ACCOUNTS } from '../../data/seed.js';
 import { esc } from '../../lib/utils.js';
 import { icon, starIcon } from '../../ui/icons.js';
 import { alertBox } from '../../ui/kit.js';
@@ -39,23 +38,8 @@ const ASIDE = `
           .join('')}
       </ul>
     </div>
-
-    <p class="auth-aside-foot">Data demo disimpan di browser Anda (localStorage). Tidak ada data yang dikirim ke server.</p>
   </section>
 `;
-
-function demoRows() {
-  return DEMO_ACCOUNTS.map(
-    (account) => `
-      <div class="demo-row">
-        <span class="badge badge-primary">${esc(account.label)}</span>
-        <code>${esc(account.email)} · ${esc(account.password)}</code>
-        <button type="button" class="btn btn-outline btn-sm" data-demo-email="${esc(
-          account.email,
-        )}" data-demo-password="${esc(account.password)}">Isi</button>
-      </div>`,
-  ).join('');
-}
 
 export async function render(ctx) {
   const next = ctx.query.get('next') || '';
@@ -95,11 +79,6 @@ export async function render(ctx) {
             </button>
           </form>
 
-          <div class="demo-box">
-            <div class="demo-box-head"><span>Akun demo</span><span>klik “Isi” untuk mencoba</span></div>
-            ${demoRows()}
-          </div>
-
           <p class="auth-switch">Belum punya akun? <a href="#/daftar">Daftar sebagai petani</a></p>
         </div>
       </main>
@@ -122,14 +101,6 @@ export async function render(ctx) {
         passwordInput.type = show ? 'text' : 'password';
         toggle.textContent = show ? 'sembunyikan' : 'lihat';
         toggle.setAttribute('aria-pressed', String(show));
-      });
-
-      root.querySelectorAll('[data-demo-email]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          form.querySelector('[name="email"]').value = btn.dataset.demoEmail;
-          passwordInput.value = btn.dataset.demoPassword;
-          submitBtn.focus();
-        });
       });
 
       form.addEventListener('submit', async (event) => {

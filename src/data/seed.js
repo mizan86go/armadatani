@@ -1,16 +1,10 @@
 import { addDaysISO, todayISO } from '../lib/utils.js';
 
 /**
- * Demo credentials shown on the login screen.
- * In a production deployment these accounts must be created by the backend
- * and this list removed — registration in this build only ever creates farmers.
+ * Seed accounts. Credentials are documented in README only and never rendered
+ * in the UI. In a production deployment these accounts must be created by the
+ * backend and this seed removed — public registration only ever creates farmers.
  */
-export const DEMO_ACCOUNTS = [
-  { role: 'farmer', label: 'Petani', email: 'petani@armadatani.id', password: 'Petani#2026' },
-  { role: 'admin', label: 'Admin KUD', email: 'admin@armadatani.id', password: 'Admin#2026' },
-  { role: 'operator', label: 'Operator', email: 'operator@armadatani.id', password: 'Operator#2026' },
-];
-
 export async function buildSeedData() {
   const today = todayISO();
   const ago = (days) => addDaysISO(today, -days);

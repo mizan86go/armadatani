@@ -574,14 +574,16 @@ textarea:focus {
   background: var(--slate-800);
 }
 
+/* Padding-based ratio keeps the stage height part of normal flow, so the
+   slideshow cannot be squeezed by a scrolling grid modal. */
 .gallery-stage {
   position: relative;
-  aspect-ratio: 4 / 3;
+  padding-top: 75%;
   background: var(--slate-900);
 }
 
 .gallery.is-detail .gallery-stage {
-  aspect-ratio: 16 / 9;
+  padding-top: 56.25%;
 }
 
 .gallery-slide {
@@ -602,18 +604,6 @@ textarea:focus {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.gallery-caption {
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: 2rem 0.7rem 0.55rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-  background: linear-gradient(transparent, rgba(6, 14, 10, 0.88));
-  pointer-events: none;
 }
 
 .gallery-arrow {
@@ -928,8 +918,14 @@ textarea:focus {
 .modal-body {
   padding: 1.15rem 1.2rem;
   overflow-y: auto;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.85rem;
+}
+
+/* Galleries must keep their full height inside the scrolling modal. */
+.modal-body > .gallery {
+  flex: 0 0 auto;
 }
 
 .link-btn {

@@ -230,6 +230,7 @@
 
 .lp-hero-media img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 4.1;
   object-fit: cover;
 }
@@ -244,12 +245,6 @@
   color: #fff;
   font-size: 0.76rem;
   font-weight: 600;
-}
-
-.lp-credit {
-  font-size: 0.66rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.72);
 }
 
 /* ---------------- Sections ---------------- */
@@ -332,6 +327,7 @@
 
 .lp-unit-media img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   transition: transform 420ms ease;
@@ -427,6 +423,7 @@
 
 .lp-photos img {
   width: 100%;
+  height: auto;
   aspect-ratio: 4 / 3.2;
   object-fit: cover;
 }
@@ -587,54 +584,6 @@
   max-width: 38ch;
   font-size: 0.82rem;
   color: var(--slate-500);
-}
-
-.lp-footer-note {
-  max-width: 36ch;
-}
-
-.lp-footer-note strong {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--slate-500);
-  margin-bottom: 0.35rem;
-}
-
-.lp-footer-note p {
-  font-size: 0.8rem;
-  color: var(--slate-500);
-  line-height: 1.6;
-}
-
-.lp-credits {
-  border-top: 1px solid var(--border);
-  padding-top: 1rem;
-  font-size: 0.76rem;
-  color: var(--slate-500);
-}
-
-.lp-credits summary {
-  cursor: pointer;
-  font-weight: 700;
-  color: var(--slate-600);
-}
-
-.lp-credits ul {
-  list-style: none;
-  padding: 0.75rem 0 0;
-  display: grid;
-  gap: 0.35rem;
-  max-height: 220px;
-  overflow-y: auto;
-}
-
-.lp-credits a {
-  color: var(--forest-700);
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 .lp-copyright {

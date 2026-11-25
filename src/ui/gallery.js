@@ -19,9 +19,6 @@ export function photoGallery(images, { className = '' } = {}) {
           <figure class="gallery-slide${index === 0 ? ' is-active' : ''}">
             <img src="${esc(image.src)}" alt="${esc(image.alt)}" width="900" height="600"
               loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async" />
-            <figcaption class="gallery-caption">
-              Foto: ${esc(image.credit)} · ${esc(image.license)}
-            </figcaption>
           </figure>`,
           )
           .join('')}

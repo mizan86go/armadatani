@@ -23,7 +23,7 @@ const ROLE_POINTS = {
 const STEPS = [
   {
     title: 'Pilih alat atau armada',
-    body: 'Bandingkan kapasitas, wilayah, dan tarif. Semua unit dilengkapi foto asli, bukan ilustrasi.',
+    body: 'Bandingkan kapasitas, wilayah, dan tarif. Semua unit dilengkapi foto asli dan spesifikasi teknis.',
   },
   {
     title: 'Ajukan tanggal sewa',
@@ -38,17 +38,6 @@ const STEPS = [
     body: 'Progres, konsumsi BBM, dan hasil pekerjaan dicatat sampai pesanan selesai.',
   },
 ];
-
-function creditList() {
-  const seen = new Set();
-  const rows = [];
-  for (const image of [...Object.values(UNIT_IMAGES).flat(), ...Object.values(LANDING_IMAGES)]) {
-    if (!image || seen.has(image.source)) continue;
-    seen.add(image.source);
-    rows.push(image);
-  }
-  return rows;
-}
 
 function featuredCard(unit, href) {
   const cover = UNIT_IMAGES[unit.id]?.[0];
@@ -139,9 +128,6 @@ export async function render(ctx) {
             )}" width="900" height="600" decoding="async" />
             <figcaption>
               <span>${esc(LANDING_IMAGES.hero.alt)}</span>
-              <span class="lp-credit">Foto: ${esc(LANDING_IMAGES.hero.credit)} · ${esc(
-                LANDING_IMAGES.hero.license,
-              )}</span>
             </figcaption>
           </figure>
         </section>
@@ -205,7 +191,7 @@ export async function render(ctx) {
         </section>
 
         <section class="lp-photos">
-          ${[LANDING_IMAGES.tractor, LANDING_IMAGES.harvest, LANDING_IMAGES.coffee]
+          ${[UNIT_IMAGES['unit-drn-05'][0], LANDING_IMAGES.harvest, LANDING_IMAGES.coffee]
             .map(
               (image) => `
             <figure>
@@ -267,25 +253,8 @@ export async function render(ctx) {
             <a class="lp-brand" href="#/">${BRAND_MARK}<span>ArmadaTani</span></a>
             <p>Sewa alsintan dan armada angkut hasil kebun untuk petani di Aceh.</p>
           </div>
-          <div class="lp-footer-note">
-            <strong>Catatan demo</strong>
-            <p>Data disimpan di browser (localStorage). Tidak ada data yang dikirim ke server pada versi ini.</p>
-          </div>
         </div>
-        <details class="lp-credits">
-          <summary>Kredit foto (Wikimedia Commons)</summary>
-          <ul>
-            ${creditList()
-              .map(
-                (image) =>
-                  `<li><a href="${esc(image.source)}" target="_blank" rel="noopener noreferrer">${esc(
-                    image.alt,
-                  )}</a> — ${esc(image.credit)}, ${esc(image.license)}</li>`,
-              )
-              .join('')}
-          </ul>
-        </details>
-        <p class="lp-copyright">© ${new Date().getFullYear()} ArmadaTani · Prototipe KUD Tani Makmur</p>
+        <p class="lp-copyright">© ${new Date().getFullYear()} ArmadaTani · KUD Tani Makmur</p>
       </footer>
     </div>
   `;

@@ -205,48 +205,6 @@
   font-weight: 700;
 }
 
-.demo-box {
-  border: 1px dashed var(--border-strong);
-  border-radius: var(--radius-md);
-  padding: 0.8rem;
-  background: var(--surface-alt);
-  display: grid;
-  gap: 0.5rem;
-}
-
-.demo-box-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--slate-500);
-}
-
-.demo-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.79rem;
-  padding: 0.4rem 0.5rem;
-  border-radius: var(--radius-xs);
-  background: #fff;
-  border: 1px solid var(--border);
-}
-
-.demo-row code {
-  font-size: 0.74rem;
-  color: var(--slate-600);
-  word-break: break-all;
-}
-
-.demo-row .btn {
-  margin-left: auto;
-}
-
 @media (max-width: 900px) {
   .auth-shell {
     grid-template-columns: minmax(0, 1fr);

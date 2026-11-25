@@ -23,7 +23,7 @@ Butuh Node 20+ (Web Crypto dipakai untuk hashing kata sandi). Aplikasi harus dib
 | Admin KUD | `admin@armadatani.id` | `Admin#2026` |
 | Operator | `operator@armadatani.id` | `Operator#2026` |
 
-Tombol **Isi** pada kotak "Akun demo" di halaman masuk mengisi kredensial secara otomatis. Data demo (6 akun, 13 unit, 4 paket, 4 pesanan, 3 log BBM) ditanam otomatis pada kunjungan pertama dan disimpan di `localStorage` browser.
+Kredensial di atas hanya didokumentasikan di README ini dan **tidak** ditampilkan di halaman mana pun. Data contoh (6 akun, 13 unit, 4 paket, 4 pesanan, 3 log BBM) ditanam otomatis pada kunjungan pertama dan disimpan di `localStorage` browser, sehingga akun langsung bisa dipakai untuk mencoba tiap peran.
 
 ## Peran & hak akses
 
@@ -39,11 +39,11 @@ Registrasi publik **hanya** membuat akun petani. Akun operator dan admin dibuat 
 
 ## Foto & kredit
 
-Semua foto peralatan dan landing page adalah foto asli dari **Wikimedia Commons** dengan lisensi bebas (CC BY, CC BY-SA, CC0, atau public domain). Berkasnya disalin ke `public/images/` agar aplikasi tidak bergantung pada host luar, dan setiap entri menyimpan nama pemotret, lisensi, serta tautan sumber di `src/data/images.js`.
+Semua foto peralatan dan landing page adalah foto asli dari **Wikimedia Commons** dengan lisensi bebas (CC BY, CC BY-SA, CC0, atau public domain). Berkasnya disalin ke `public/images/` agar aplikasi tidak bergantung pada host luar, dan setiap entri tetap menyimpan nama pemotret, lisensi, serta tautan sumber di `src/data/images.js`.
 
 - `src/data/images.js` — peta `unitId → [{ src, alt, credit, license, source }]` dan foto landing. Katalog serta detail unit membacanya; kartu memakai foto pertama sebagai sampul.
-- Galeri detail unit (`src/ui/gallery.js`) adalah slideshow dengan panah, titik navigasi, penghitung, dan kredit foto di dalam gambar.
-- Kredit juga ditampilkan di footer landing page (bagian “Kredit foto”) sesuai syarat lisensi CC BY / CC BY-SA. Jika foto diganti, perbarui entri kreditnya — jangan hapus atribusi selama fotonya dipakai.
+- Galeri detail unit (`src/ui/gallery.js`) adalah slideshow dengan panah, titik navigasi, dan penghitung foto. Tidak ada teks kredit/lisensi yang dirender di UI.
+- Metadata kredit disimpan sebagai data, bukan ditampilkan. Sebelum publikasi luas, ganti foto dengan materi milik sendiri/berlisensi komersial **atau** tampilkan kembali atribusi sesuai lisensi CC BY / CC BY-SA.
 
 Untuk mengganti foto: taruh berkas baru di `public/images/units/` (atau `landing/`), lalu perbarui entri terkait di `src/data/images.js` beserta `alt`, `credit`, `license`, dan `source`.
 
@@ -88,8 +88,8 @@ Semua akses data melewati `src/lib/store.js` dan `src/lib/auth.js`. Ganti isi ke
 ## Catatan produksi
 
 - Build ini **client-only**: sesi, pengguna, dan kata sandi tersimpan di browser. Untuk produksi, gunakan backend dengan sesi `httpOnly`, rate limiting login, verifikasi email, dan otorisasi di sisi server — guard di UI bukan pengganti otorisasi server.
-- Daftar `DEMO_ACCOUNTS` di `src/data/seed.js` dan tombol kuota demo di halaman masuk harus dihapus saat data nyata digunakan.
+- Akun contoh berada di `src/data/seed.js` (`demoPassword` pada tiap pengguna) dan hanya ditanam sekali saat inisialisasi. Saat data nyata digunakan, hapus akun seed beserta pemanggilan seed, lalu ganti `store.js`/`auth.js` dengan API backend.
 - Sesi kedaluwarsa setelah 8 jam (`SESSION_TTL_MS`), dan akun nonaktif langsung ditolak saat memuat sesi.
-- Foto berlisensi CC BY / CC BY-SA wajib mempertahankan atribusi. Kredit saat ini tampil di modal detail unit dan footer landing page; jika aplikasi dipublikasikan, pertahankan halaman kredit tersebut.
-- Ukuran foto sudah diturunkan ke lebar 900 px, tetapi total `public/images` masih sekitar 11 MB. Untuk produksi, kompres ke WebP/AVIF dan sediakan `srcset`.
+- Foto berlisensi CC BY / CC BY-SA mewajibkan atribusi saat dipublikasikan. UI saat ini tidak menampilkannya; sebelum rilis publik, tambahkan halaman atribusi atau ganti fotonya.
+- Ukuran foto sudah diturunkan ke lebar 900 px, tetapi total `public/images` masih sekitar 7,5 MB. Untuk produksi, kompres ke WebP/AVIF dan sediakan `srcset`.
 - Belum termasuk dari prototype lama: peta zonasi SVG Aceh dan toggle bahasa ID/EN.

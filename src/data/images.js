@@ -2,23 +2,18 @@
  * Foto peralatan dan landing page.
  * Semua foto berasal dari Wikimedia Commons dengan lisensi bebas (CC BY / CC BY-SA /
  * CC0 / public domain), diunduh ulang ke /public/images agar tidak bergantung host luar.
- * Atribusi wajib dipertahankan sesuai lisensi masing-masing — lihat properti `credit`.
+ * Metadata `credit`, `license`, dan `source` disimpan sebagai data rujukan dan tidak
+ * dirender di UI. Lisensi CC BY / CC BY-SA tetap mewajibkan atribusi bila dipublikasikan.
  */
 const CREDITS = {
   "units/unit-tr4-01-1.jpg": {
-    "alt": "Traktor roda empat membajak sawah basah",
-    "credit": "David Stanley from Nanaimo, Canada",
-    "license": "CC BY 2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Rice_Paddy_Tractor_(27732883990).jpg"
+    "alt": "Traktor roda empat mengolah tanah sawah dengan rotavator",
+    "credit": "Jd6420",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Thai-farmer.jpg"
   },
   "units/unit-tr4-01-2.jpg": {
-    "alt": "Traktor membajak petak sawah",
-    "credit": "CEphoto, Uwe Aranas",
-    "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Taun-Gusi-2_Sabah_Ploughing-the-rice-paddies-03.jpg"
-  },
-  "units/unit-tr4-01-3.jpg": {
-    "alt": "Traktor Kubota M7030 di lahan pertanian",
+    "alt": "Traktor Kubota M7030 FDT dengan perangkat bajak",
     "credit": "Dorieo",
     "license": "CC BY-SA 4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Tractor_Kubota_M7030_FDT_en_Valencia_01.jpg"
@@ -197,12 +192,6 @@ const CREDITS = {
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Coffee_farmer_in_Aceh_(4874878298).jpg"
   },
-  "landing/tractor.jpg": {
-    "alt": "Traktor membajak sawah",
-    "credit": "CEphoto, Uwe Aranas",
-    "license": "CC BY-SA 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Taun-Gusi-2_Sabah_Ploughing-the-rice-paddies-03.jpg"
-  }
 };
 
 function gallery(paths) {
@@ -210,7 +199,7 @@ function gallery(paths) {
 }
 
 export const UNIT_IMAGES = {
-  'unit-tr4-01': gallery(["units/unit-tr4-01-2.jpg","units/unit-tr4-01-3.jpg","units/unit-tr4-01-1.jpg"]),
+  'unit-tr4-01': gallery(["units/unit-tr4-01-1.jpg","units/unit-tr4-01-2.jpg"]),
   'unit-tr2-02': gallery(["units/unit-tr2-02-1.jpg","units/unit-tr2-02-2.jpg"]),
   'unit-tr4-04': gallery(["units/unit-tr4-04-1.jpg","units/unit-tr4-04-2.jpg"]),
   'unit-exc-03': gallery(["units/unit-exc-03-1.jpg","units/unit-exc-03-2.jpg"]),
@@ -229,7 +218,6 @@ export const LANDING_IMAGES = {
   hero: gallery(['landing/aceh.jpg'])[0],
   harvest: gallery(['landing/harvest.jpg'])[0],
   coffee: gallery(['landing/coffee.jpg'])[0],
-  tractor: gallery(['landing/tractor.jpg'])[0],
 };
 
 export function unitImages(unit) {
