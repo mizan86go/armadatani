@@ -1,0 +1,241 @@
+/**
+ * Foto peralatan dan landing page.
+ * Semua foto berasal dari Wikimedia Commons dengan lisensi bebas (CC BY / CC BY-SA /
+ * CC0 / public domain), diunduh ulang ke /public/images agar tidak bergantung host luar.
+ * Atribusi wajib dipertahankan sesuai lisensi masing-masing — lihat properti `credit`.
+ */
+const CREDITS = {
+  "units/unit-tr4-01-1.jpg": {
+    "alt": "Traktor roda empat membajak sawah basah",
+    "credit": "David Stanley from Nanaimo, Canada",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Rice_Paddy_Tractor_(27732883990).jpg"
+  },
+  "units/unit-tr4-01-2.jpg": {
+    "alt": "Traktor membajak petak sawah",
+    "credit": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Taun-Gusi-2_Sabah_Ploughing-the-rice-paddies-03.jpg"
+  },
+  "units/unit-tr4-01-3.jpg": {
+    "alt": "Traktor Kubota M7030 di lahan pertanian",
+    "credit": "Dorieo",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tractor_Kubota_M7030_FDT_en_Valencia_01.jpg"
+  },
+  "units/unit-tr2-02-1.jpg": {
+    "alt": "Traktor tangan dua roda di sawah",
+    "credit": "Steven Belcher",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kubota_two-wheel_tractor_in_Thailand.jpg"
+  },
+  "units/unit-tr2-02-2.jpg": {
+    "alt": "Petani mengolah lahan dengan traktor tangan",
+    "credit": "AKUIO",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mengolah_Lahan.jpg"
+  },
+  "units/unit-tr4-04-1.jpg": {
+    "alt": "Traktor menarik bajak subsoiler",
+    "credit": "BulldozerD11",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ford_FW_30_pulling_Subsoiler.jpg"
+  },
+  "units/unit-tr4-04-2.jpg": {
+    "alt": "Pengolahan tanah lapisan dalam di lahan kering",
+    "credit": "RomanM82",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Uh%C5%99ice_(okres_Hodon%C3%ADn)_-_podm%C3%ADt%C3%A1n%C3%AD_p%C5%AFdy,_2023-09,_obr01.jpg"
+  },
+  "units/unit-exc-03-1.jpg": {
+    "alt": "Ekskavator mini di lokasi kerja",
+    "credit": "Daderot",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Case_mini_excavator_-_Arlington,_MA.jpg"
+  },
+  "units/unit-exc-03-2.jpg": {
+    "alt": "Ekskavator menggali parit di area terbuka",
+    "credit": "Shixart1985",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Excavator_digging_in_a_field_during_a_sunny_afternoon_in_a_rural_area.jpg"
+  },
+  "units/unit-drn-05-1.jpg": {
+    "alt": "Drone pertanian menyemprot petak sawah",
+    "credit": "Christopher Hedreyd - PIA 4A CALABARZON",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:IRRI_BBM_rice_drone_demo_2.jpg"
+  },
+  "units/unit-drn-05-2.jpg": {
+    "alt": "Unit drone semprot DJI Agras T10",
+    "credit": "ZLEA",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:DJI_3WWDZ-10A_Agras_T10_(FA3XY4XTKM)_(4-9-2024).jpg"
+  },
+  "units/unit-drn-05-3.jpg": {
+    "alt": "Drone penyemprot di atas padi",
+    "credit": "Shreesha Sharma",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Agricultural_drone_spraying_on_paddy_field.jpg"
+  },
+  "units/unit-bbt-06-1.jpg": {
+    "alt": "Mesin babat rumput gendong",
+    "credit": "Feťour",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Brush_cutter_02.JPG"
+  },
+  "units/unit-bbt-06-2.jpg": {
+    "alt": "Pemakaian mesin pemotong rumput",
+    "credit": "Shixart1985",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Person_uses_a_gas-powered_trimmer_to_cut_grass_near_a_path_in_a_green_area.jpg"
+  },
+  "units/unit-spr-07-1.jpg": {
+    "alt": "Unit power sprayer tipe punggung",
+    "credit": "Safapalanadan94",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Knapsack_sprayer.jpg"
+  },
+  "units/unit-spr-07-2.jpg": {
+    "alt": "Penyemprotan pestisida di lahan",
+    "credit": "Akarsh Simha from Austin, Texas, USA",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Spraying_pesticide.jpeg"
+  },
+  "units/unit-cmb-08-1.jpg": {
+    "alt": "Mesin panen padi bekerja di sawah",
+    "credit": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:KotaBelud_Sabah_Rice-Harvesting-machine-01.jpg"
+  },
+  "units/unit-cmb-08-2.jpg": {
+    "alt": "Combine harvester memanen padi",
+    "credit": "Elmschrat",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:01-rice_combine_harvester.jpg"
+  },
+  "units/unit-cmb-08-3.jpg": {
+    "alt": "Mesin pemotong padi di petak sawah",
+    "credit": "M Joko Apriyo Putro",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Rice_Cutting_Machine.jpg"
+  },
+  "units/unit-thr-09-1.jpg": {
+    "alt": "Mesin perontok padi mekanis",
+    "credit": "Charipearl",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mechanized_Rice_Thresher.jpg"
+  },
+  "units/unit-thr-09-2.jpg": {
+    "alt": "Mesin perontok jagung mobile",
+    "credit": "Jozef020",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Motorized_Mobile_Sheller.jpg"
+  },
+  "units/unit-plp-10-1.jpg": {
+    "alt": "Mesin pulper kopi",
+    "credit": "Yercaud-elango",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Coffee_pulper_machine-1-keeraikkadu_puthur-yercaud-salem-India.jpg"
+  },
+  "units/unit-plp-10-2.jpg": {
+    "alt": "Proses pengupasan buah kopi",
+    "credit": "Erinamukuta",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Coffee_pulping_process.JPG"
+  },
+  "units/unit-trk-11-1.jpg": {
+    "alt": "Pekerja memuat hasil panen ke truk",
+    "credit": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tawau_Sabah_Worker-with-Isuzu-truck-01.jpg"
+  },
+  "units/unit-trk-11-2.jpg": {
+    "alt": "Truk engkel bak terbuka",
+    "credit": "Sulthan Naufal",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hino_500_Ranger_(New_from_Hino_Motors_Manufacturing_Indonesia).jpg"
+  },
+  "units/unit-pkp-12-1.jpg": {
+    "alt": "Pikap 4x4 double cabin",
+    "credit": "Ethan Llamas",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Toyota_Hilux_2.8_Conquest_4x4_2022.jpg"
+  },
+  "units/unit-pkp-12-2.jpg": {
+    "alt": "Pikap 4x4 dari sudut belakang",
+    "credit": "Captainmorlypogi1959",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2016_Mitsubishi_Strada_4x4_GLS_Sport_Field_Master_(3).jpg"
+  },
+  "units/unit-dmp-13-1.jpg": {
+    "alt": "Truk dump bak hidrolik",
+    "credit": "Jirapat Chroenkeskij",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Customized_Hino_Ranger_Dump_Trucks_For_Sale_in_Thailand_04.jpg"
+  },
+  "units/unit-dmp-13-2.jpg": {
+    "alt": "Truk dump enam roda",
+    "credit": "Jirapat Chroenkeskij",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Customized_Hino_Ranger_Dump_Trucks_For_Sale_in_Thailand_01.jpg"
+  },
+  "landing/aceh.jpg": {
+    "alt": "Sawah di dataran Gayo Lues, Aceh",
+    "credit": "a_rabin",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Gayo_Lues_rice_fields.jpg"
+  },
+  "landing/harvest.jpg": {
+    "alt": "Petani memanen padi",
+    "credit": "Crisco 1492",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Farmer_harvesting_rice,_Kampung_Rawa_2014-06-20.jpg"
+  },
+  "landing/coffee.jpg": {
+    "alt": "Petani kopi di Aceh memeriksa buah kopi",
+    "credit": "USAID Indonesia",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Coffee_farmer_in_Aceh_(4874878298).jpg"
+  },
+  "landing/tractor.jpg": {
+    "alt": "Traktor membajak sawah",
+    "credit": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Taun-Gusi-2_Sabah_Ploughing-the-rice-paddies-03.jpg"
+  }
+};
+
+function gallery(paths) {
+  return paths.map((path) => ({ src: `/images/${path}`, ...CREDITS[path] }));
+}
+
+export const UNIT_IMAGES = {
+  'unit-tr4-01': gallery(["units/unit-tr4-01-2.jpg","units/unit-tr4-01-3.jpg","units/unit-tr4-01-1.jpg"]),
+  'unit-tr2-02': gallery(["units/unit-tr2-02-1.jpg","units/unit-tr2-02-2.jpg"]),
+  'unit-tr4-04': gallery(["units/unit-tr4-04-1.jpg","units/unit-tr4-04-2.jpg"]),
+  'unit-exc-03': gallery(["units/unit-exc-03-1.jpg","units/unit-exc-03-2.jpg"]),
+  'unit-drn-05': gallery(["units/unit-drn-05-1.jpg","units/unit-drn-05-2.jpg","units/unit-drn-05-3.jpg"]),
+  'unit-bbt-06': gallery(["units/unit-bbt-06-1.jpg","units/unit-bbt-06-2.jpg"]),
+  'unit-spr-07': gallery(["units/unit-spr-07-1.jpg","units/unit-spr-07-2.jpg"]),
+  'unit-cmb-08': gallery(["units/unit-cmb-08-1.jpg","units/unit-cmb-08-2.jpg","units/unit-cmb-08-3.jpg"]),
+  'unit-thr-09': gallery(["units/unit-thr-09-1.jpg","units/unit-thr-09-2.jpg"]),
+  'unit-plp-10': gallery(["units/unit-plp-10-1.jpg","units/unit-plp-10-2.jpg"]),
+  'unit-trk-11': gallery(["units/unit-trk-11-1.jpg","units/unit-trk-11-2.jpg"]),
+  'unit-pkp-12': gallery(["units/unit-pkp-12-1.jpg","units/unit-pkp-12-2.jpg"]),
+  'unit-dmp-13': gallery(["units/unit-dmp-13-1.jpg","units/unit-dmp-13-2.jpg"]),
+};
+
+export const LANDING_IMAGES = {
+  hero: gallery(['landing/aceh.jpg'])[0],
+  harvest: gallery(['landing/harvest.jpg'])[0],
+  coffee: gallery(['landing/coffee.jpg'])[0],
+  tractor: gallery(['landing/tractor.jpg'])[0],
+};
+
+export function unitImages(unit) {
+  return UNIT_IMAGES[unit?.id]?.length ? UNIT_IMAGES[unit.id] : [];
+}
+
+export function unitCover(unit) {
+  return unitImages(unit)[0] || null;
+}
